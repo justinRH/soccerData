@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 
 if __name__ == '__main__':
-    PATH = "C:/Users/USUARIO/Documents/pyProjects/fbref_project/"
+    
 
     links = ['https://fbref.com/en/comps/12/2021-2022/2021-2022-La-Liga-Stats',
              'https://fbref.com/en/comps/20/2021-2022/2021-2022-Bundesliga-Stats',
