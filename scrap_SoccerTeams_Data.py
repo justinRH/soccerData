@@ -1,3 +1,6 @@
+# This scripts scraps fbref web page to get stats from B5L-UEFA
+# Big 5 Ligue of UEFA: La Liga, Premier, Bundes, Ligue-1 and Serie A
+# install requeriments (pip install -r requirements.txt )
 
 import sys
 import os
@@ -6,21 +9,18 @@ import pandas as pd
 import numpy as np
 import csv 
 
-
 import requests
 from re import sub
 from lxml import html
 from bs4 import BeautifulSoup  
 
 
-
-
 if __name__ == '__main__':
     
 
-    links = ['https://fbref.com/en/comps/12/2021-2022/2021-2022-La-Liga-Stats',
-             'https://fbref.com/en/comps/20/2021-2022/2021-2022-Bundesliga-Stats',
-             'https://fbref.com/en/comps/9/2021-2022/2021-2022-Premier-League-Stats']
+    links = ['https://fbref.com/en/comps/12/2021-2022/2021-2022-La-Liga-Stats']
+#             'https://fbref.com/en/comps/20/2021-2022/2021-2022-Bundesliga-Stats',
+#             'https://fbref.com/en/comps/9/2021-2022/2021-2022-Premier-League-Stats']
 #             'https://fbref.com/en/comps/13/2021-2022/2021-2022-Ligue-1-Stats'      
 #            'https://fbref.com/en/comps/11/2021-2022/2021-2022-Serie-A-Stats',  ]
 
@@ -72,13 +72,13 @@ if __name__ == '__main__':
                 print(href.split('/')[5]) 
                 
                 try:
-                    os.mkdir(path_dir)
+                    os.mkdir(path_dir[:-1] + "\\" + "teams")
                 except OSError as e:
                     if e.errno != errno.EEXIST:
                         raise
  
                 df = pd.read_html('https://fbref.com/'+href,header=1,attrs={'id': stat + link.split('/')[5]})
-                df[0].to_csv(path_dir[:-1] + "\\"  + href.split('/')[5] +"_" + stat +  ".csv" )
+                df[0].to_csv(path_dir[:-1] + "\\" + "teams" +"\\"  + href.split('/')[5] +"_" + stat +  ".csv" )
             print('... listo')
 
    
